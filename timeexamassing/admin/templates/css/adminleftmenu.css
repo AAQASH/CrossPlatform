@@ -1,0 +1,6 @@
+#vertmenu{font-family:Verdana, Arial, Helvetica, sans-serif;margin:0;padding:0}
+#vertmenu h1{border-bottom:1px solid #000;display:block;margin:0;padding:7px 0 5px 3px}
+#vertmenu ul{border:none;list-style:none;margin:0;padding:0}
+#vertmenu ul li{margin:0;padding:0}
+#vertmenu ul li a{border-bottom:1px dashed #000;display:block;padding:6px 0 6px 4px;text-decoration:none}
+#vertmenu ul li a:hover,#vertmenu ul li a:focus,#vertmenu ul li.selected{background-color:#eee;color:#000}

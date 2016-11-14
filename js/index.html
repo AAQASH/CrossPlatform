@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+    	
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <link rel="stylesheet" href="css/responsive.css" />
+    
+	<script src="js/jquery-1.12.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<div data-role="page" id="deviceready">
+	<div class="header" data-role="header">
+		<h1>COLLEGE SCHEDULE NOTIFICATION</h1>      
+	</div>
+   <form id="loginForm" name="loginForm" action="#" method="post">
+	<div role="main" class="ui-content page-register" id="vcenter">
+    	<h1 class="page-title">WELCOME TO COLLEGE SCHEDULE NOTIFICATION</h1>
+        <ul data-role="listview" data-inset="true" class="form-list">
+        	<li><input name="email" id="email" value="" type="text" placeholder="Email Id"></li>
+            <li><input name="password" id="password" value="" type="password" placeholder="Password"></li>
+            <!--<li><p class="center">forgot password? <a href="reset-password.html">reset here</a></p></li>-->
+        	<li class="button-wrap">
+            	<button type="button" class="ui-btn ui-corner-all ui-btn-a" id="submitButton">Login</button>              	
+            </li>           
+            <li><p class="center">New Student? <a href="register.html">Register here</a></p></li>
+        </ul>
+	</div><!-- /content -->
+   </form>
+</div><!-- /page -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="PushNotification.js"></script>
+<script type="text/javascript" src="js/common.inc.js"></script>
+<script type="text/javascript">
+ app.initialize();
+ function setDeviceId(DID,deviceType) 
+ { 
+   localStorage.setItem('deviceId', DID); 
+   localStorage.setItem('deviceType', deviceType);
+ }
+ document.addEventListener("backbutton", function(e){
+    if($.mobile.activePage.is('#deviceready')){
+        /* 
+         Event preventDefault/stopPropagation not required as adding backbutton
+          listener itself override the default behaviour. Refer below PhoneGap link.
+        */
+        //e.preventDefault();
+        navigator.app.exitApp();
+    }
+    else {
+        navigator.app.backHistory()
+    }
+}, false);
+
+ $(document).ready(function () {
+        //event handler for submit button
+		if(localStorage.getItem('email') && localStorage.getItem('password'))
+		{
+			window.location = 'home.html';
+		}
+		
+        $("#submitButton").click(function () {
+            //collect userName and password entered by users
+            var email = $("#email").val();
+            var password = $("#password").val();
+
+            //call the authenticate function
+            handleLogin(email, password);
+        });
+    });
+</script>
+</body>
+</html>

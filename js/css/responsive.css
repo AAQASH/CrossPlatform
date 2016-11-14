@@ -1,0 +1,29 @@
+@media all and (max-width:550px){
+
+}
+
+@media all and (max-width:539px){
+.ui-header.header h1{font-size:13px;}
+.page-title{font-size:20px; line-height:100%;}
+body .form-list li .ui-input-text input{font-size:13px;}
+.ui-listview > li p{font-size:13px;}
+body .form-list .ui-btn, .button{font-size:16px;}
+
+.profile-page .ui-input-text input{font-size:13px;}
+.ui-navbar li .ui-btn{font-size:12px;}
+.section-title{font-size:18px;}
+
+.college-tbl th, .college-tbl td{font-size:12px; padding:6px 10px;}
+.college-tbl th, .college-tbl .ui-table-cell-label{font-size:12px;}
+.ui-listview li p{font-size:11px; white-space:normal;}
+ul.thumb-list li a.ui-btn h2{font-size:12px;}
+ul.thumb-list li span.ui-btn{font-size:10px; width:100px; height:30px; line-height:30px;}
+
+.ui-collapsible-set h3 a{font-size:14px; padding:13px;}
+.ui-collapsible-content .ui-listview li a{font-size:12px;}
+.page-home ul li a{font-size:14px;}
+}
+
+@media all and (max-width:448px){
+.ui-field-contain{padding:0.4em 0;}		
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Settings</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <link rel="stylesheet" href="css/responsive.css" />
+    
+	<script src="js/jquery-1.12.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+
+
+<!-- Start of first page -->
+<div data-role="page">
+	<div class="header" data-role="header" data-position="fixed">
+		<h1>Settings</h1>
+        <a href="#left-panel" data-iconpos="notext" class="bar"><img src="images/bar.png"/></a>
+        <a href="#" class="user"><img src="images/trash/user.jpg"/></a>
+	</div><!-- /header -->
+<div data-role="panel" id="left-panel" data-display="push">
+	<ul data-role="listview">  
+    	<li><a data-ajax="false" data-transition="slide" href="home.html">Home</a></li>
+		<li><a data-ajax="false" data-transition="slide" href="edit-profile.html">Profile</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="time-table.html">Time Table</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="" class="examination">Examination</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="events.html">Events</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="notice.html">Notice</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="assignments.html">Assignments</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="settings.html">Settings</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="help.html">Help</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="#" onClick="handellogout()">Logout</a></li>
+	</ul>
+</div><!-- /panel -->
+	<div role="main" class="ui-content settings-page">
+    <div data-role="collapsible-set" data-iconpos="right">
+		<div>
+        	<h3><a href="edit-profile.html" target="_blank">Edit Profile</a></h3>
+		</div>
+		<div data-role="collapsible" data-iconpos="right">
+        <h3>Select Year</h3>
+        <ul data-role="listview" id="selectyear"></ul>
+        </div>
+	<div>
+        	<h3><input type="text" class="text" id="rollno" name="rollno" value="" /></h3>
+		</div>
+	<div data-role="collapsible" data-iconpos="right">
+    	<h3>Notification Intervals</h3>
+        <ul data-role="listview" id="notificationInterval">
+        	<li><a href="#" id="tab1" data-index="Hourly" name="inverval" class="Hourly">Hourly</a></li>
+            <li><a href="#" id="tab2" data-index="Daily" name="inverval" class="Daily">Daily</a></li>
+            <li><a href="#" id="tab3" data-index="None" name="inverval" class="None">None</a></li>
+        </ul>
+    </div>
+    <div>
+    <h3><a href="change-password.html">Change Password</a></h3>
+    </div>
+    <div>
+    <h3><a href="#">Help</a></h3>
+    </div>
+    <div class="center"><button class="button" type="button" id="editSetting" name="editSetting">Done</button></div>
+  </div>
+</div><!-- /content -->
+	
+</div><!-- /page -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/common.inc.js"></script>
+<script type="text/javascript">
+	 if(!localStorage.getItem('userimage') == "")
+	 {
+		$(".user img").attr("src",localStorage.getItem('userimage')); 
+	 }
+	 	 
+	 $('#rollno').val(localStorage.getItem('rollno'));
+	 
+	 var classId = localStorage.getItem('classId');
+		if(classId == 1 || classId == 2)
+		{
+			$(".examination").attr("href","year-I-II.html");
+		}
+		else
+		{
+			$(".examination").attr("href","year-III-IV.html");
+		}
+	 getClassYear();
+	 getNotificationInterval();
+	 	 
+	$("#editSetting").on("click", function () {  
+		var rollno = $("#rollno").val();
+		handelEditSetting(rollno);
+	});
+</script>
+</body>
+</html>

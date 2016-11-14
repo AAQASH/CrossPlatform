@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Profile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <link rel="stylesheet" href="css/responsive.css" />
+    
+	<script src="js/jquery-1.12.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+
+
+<!-- Start of first page -->
+<div data-role="page">
+	<div class="header" data-role="header" data-position="fixed">
+		<h1>Edit Profile</h1>
+        <a href="#left-panel" data-iconpos="notext" class="bar"><img src="images/bar.png"/></a>
+        <a href="#" class="user"><img src="images/trash/user.jpg"/></a>
+	</div><!-- /header -->
+<div data-role="panel" id="left-panel" data-display="push">
+	<ul data-role="listview">  
+    <li><a data-ajax="false" data-transition="slide" href="home.html">Home</a></li>
+		<li><a data-ajax="false" data-transition="slide" href="edit-profile.html">Profile</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="time-table.html">Time Table</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="" class="examination">Examination</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="events.html">Events</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="notice.html">Notice</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="assignments.html">Assignments</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="settings.html">Settings</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="help.html">Help</a></li>
+        <li><a data-ajax="false" data-transition="slide" href="#" onClick="handellogout()">Logout</a></li>
+	</ul>
+</div><!-- /panel -->
+	<div role="main" class="ui-content profile-page">
+    	<form id="edit-profile" name="edit-profile" action="#" method="post">
+        <div class="profile-img">
+        	<div class="pro-img"><img src="images/trash/pro-img.png"/></div>	
+            <div class="upload-file">
+               <a data-role="button" onClick="uploadFromGallery();">Browse</a>
+               <input type="hidden" id="fileName" name="fileName" value="">
+            </div>			
+        </div>
+    	<div class="row">
+		
+            <div class="ui-field-contain">
+	            <label>First Name:</label>
+    	        <input type="text" id="fname" name="fname" value="">
+            </div>
+            <div class="ui-field-contain">
+	            <label>Last Name:</label>
+    	        <input type="text" id="lname" name="lname" value="">
+            </div>
+            <div class="ui-field-contain">
+	            <label>Email:</label>
+    	        <input type="text" id="email" name="email" value="">
+            </div>
+            <div class="ui-field-contain">
+	            <label>Phone:</label>
+    	        <input type="text" id="phone" name="phone" value="">
+            </div>
+            <div class="ui-field-contain">
+            	<button class="ui-btn" id="editSubmit">Save</button>            
+            </div>
+           </form>   
+            <script type="text/javascript" src="cordova.js"></script> 
+			<script type="text/javascript" src="js/common.inc.js"></script>
+            <script type="text/javascript"> 
+			    $("#email").val(localStorage.getItem('email'));
+                   $("#phone").val(localStorage.getItem('phone'));
+				   $("#fname").val(localStorage.getItem('fname'));
+                   $("#lname").val(localStorage.getItem('lname'));
+				   $("#fileName").val(localStorage.getItem('userimage'));
+				   
+				   if(!localStorage.getItem('userimage') == "")
+				   {
+					  $(".pro-img img").attr("src",localStorage.getItem('userimage'));
+				   	  $(".user img").attr("src",localStorage.getItem('userimage')); 
+				   }
+				   
+				    var classId = localStorage.getItem('classId');
+					if(classId == 1 || classId == 2)
+					{
+						$(".examination").attr("href","year-I-II.html");
+					}
+					else
+					{
+						$(".examination").attr("href","year-III-IV.html");
+					}
+					
+					$(document).on('pageinit', function() {
+					 $("#editSubmit").click(function () {
+						 var fname = $("#fname").val();
+						 var lname = $("#lname").val();
+						 var email = $("#email").val();
+						 var phone = $("#phone").val();
+						 var userimage = $("#fileName").val();
+						 //alert(userimage);
+						 handelEditProfile(fname, lname, email, phone, userimage);
+						});
+					  });
+					   
+                function uploadFromGallery() {
+                
+                    // Retrieve image file location from specified source
+                    navigator.camera.getPicture(uploadPhoto,
+                                                function(message) { alert('get picture failed'); },
+                                                { quality: 50, 
+                                                destinationType: navigator.camera.DestinationType.FILE_URI,
+                                                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                                );
+                
+                }
+                
+                function uploadPhoto(imageURI) {
+                    var options = new FileUploadOptions();
+                    options.fileKey="file";
+                    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+                    options.mimeType="text/plain";
+                
+                    var params = new Object();
+                
+                    options.params = params;
+                
+                    var ft = new FileTransfer();
+                    ft.upload(imageURI, encodeURI("http://timeexamassing.wiseprm.com/file_upload/upload.php"), win, fail, options);
+                }
+                
+                function win(r) {
+                    //alert(r.response);
+					$('.pro-img').html('<img src='+r.response+'/>');    
+					$('#fileName').val(r.response);
+                    console.log("Code = " + r.responseCode);
+                    console.log("Response = " + r.response);
+                    console.log("Sent = " + r.bytesSent);
+                }
+                
+                function fail(error) {
+                    alert("An error has occurred: Code = " + error.code);
+                    console.log("upload error source " + error.source);
+                    console.log("upload error target " + error.target);
+                }
+            </script>       
+</div>
+</div><!-- /content -->
+</div><!-- /page -->
+
+</body>
+</html>

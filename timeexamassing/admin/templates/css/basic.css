@@ -1,0 +1,43 @@
+@charset utf-8;
+.grid1 div.adjuster{margin-left:-8px}
+.grid1 div[class*="adjuster width"]{width:840px}
+.grid1 div[class*="adjuster width"] > *{background:red;margin-left:8px;width:26px}
+.taller > *{height:100%}
+.clearfix:after,.container:after{clear:both;content:"\0020";display:block;height:0;overflow:hidden;visibility:hidden}
+.clr{clear:both;height:0;margin:0;overflow:hidden;padding:0}
+[class*=modhead],[class*=modhead] span{display:block;overflow:hidden}
+[class*=modhead],div[class*=rndmod],div[class*=rndmod] div{background:url(../images/sprite.gif) no-repeat;overflow:hidden}
+.rel{position:relative}
+.fullwid{width:100%}
+.adminLeft{width: 20%}
+.adminRight{ padding-left: 20px; width: 75% }
+.inline{display:inline}
+.vsmltxt{font-size:10px}
+.smltxt{font-size:11px}
+.paratxt{font-size:12px}
+.bigtxt{font-size:14px}
+.strong{font-weight:700}
+.normtxt,.normtxt a{font-weight:400}
+.allcaps,.allcaps a{text-transform:capitalize}
+.uppercase,.uppercase a{text-transform:uppercase}
+.underlined,.underlined a{text-decoration:underline}
+.centerall{text-align:center}
+.leftalign{text-align:left}
+.rightalign{text-align:right}
+.justified{text-align:justify}
+ul.maketabs li a,ul.maketabs li a span{display:block;float:left}
+ul.makemenu li,ul.maketabs li a{display:block}
+.ovfl-hidden{overflow:hidden}
+div.error{color:#DF280A!important;font-style:italic}
+.customsuccess{background:#e5f7e3 url(../images/check.gif) no-repeat;background-position:7px 7px;border:1px solid #c5e1c8;color:#005e20;font-weight:700;margin-bottom:14px;padding:8px 8px 8px 28px}
+.customerror{background:#ffebeb url(../images/error_msg_icon.gif) no-repeat;background-position:7px 7px;border:1px solid #F16048!important;color:#DF280A!important;font-weight:700;margin-bottom:14px;padding:8px 8px 8px 28px}
+.customwarning{background:#fffeeb url(../images/warning.gif) no-repeat;background-position:7px 7px;border:1px solid #e6e5d8;color:#555;font-weight:700;margin-bottom:14px;padding:8px 8px 8px 28px}
+.customquestion{background:#e8f8fe url(../images/question.gif) no-repeat;background-position:7px 7px;border:1px solid #cfdfe5;color:#004a80;font-weight:700;margin-bottom:14px;padding:8px 8px 8px 28px}
+.fl {float:left} .fr {float:right}
+.leftfloated > * {float:left}
+.rightfloated > * {float:right}
+.oppfloats > * {float:right}
+.oppfloats :first-child {float:left}
+div[class*=qtr] > *,div[class*=onethird] > *{width:25%}
+div[class*=adjuster],div[class*=adjuster] > *,ul.maketabs li{display:inline;float:left}
+.absolute,.absoluted > *{position:absolute}
